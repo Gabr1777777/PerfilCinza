@@ -8,8 +8,14 @@
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=Poppins:wght@300;400&display=swap" rel="stylesheet">
 
 <style>
-/* Reset e Cursor */
-*{box-sizing:border-box; cursor: none !important;}
+/* Reset, Cursor e Bloqueio de Seleção */
+*{
+    box-sizing:border-box; 
+    cursor: none !important;
+    -webkit-user-select: none; /* Safari */
+    -ms-user-select: none; /* IE 10 e 11 */
+    user-select: none; /* Padrão */
+}
 
 body{
     margin:0;
@@ -270,7 +276,7 @@ body{
 </style>
 </head>
 
-<body>
+<body onselectstart="return false">
 
 <img id="cursorJefaExacto" src="https://xatimg.com/image/WmUTHP4IOFWv.png">
 
@@ -296,7 +302,7 @@ body{
         </div>
 
         <div class="name">
-            NAME 
+            Gabriel 
             <img src="https://flagcdn.com/w20/br.png" style="width:25px">
         </div>
         
@@ -362,7 +368,7 @@ body{
 <script>
 /* --- Configurações de Música --- */
 let playlist = [
-    { name: "Bad Bunny - Monaco", url: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" }, // Substitua pelos seus links .mp3
+    { name: "Bad Bunny - Monaco", url: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" }, 
     { name: "WRS Radio Mix", url: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3" }
 ];
 let currentTrack = 0;
@@ -404,7 +410,7 @@ function enterSite() {
     intro.style.opacity = "0";
     setTimeout(() => {
         intro.style.display = "none";
-        playMusic(); // Toca música ao entrar
+        playMusic(); 
     }, 800);
 }
 
@@ -428,10 +434,13 @@ function changeSlide(n) {
     });
 }
 
-/* --- Proteção de Código --- */
+/* --- Proteção de Código e Bloqueio de Seleção --- */
 document.addEventListener('contextmenu', e => e.preventDefault());
 document.addEventListener('keydown', e => {
-    if (e.ctrlKey && (e.key === 'u' || e.key === 's' || e.key === 'i')) e.preventDefault();
+    // Bloqueia Ctrl+U, Ctrl+S, Ctrl+I e Ctrl+A (selecionar tudo)
+    if (e.ctrlKey && (e.key === 'u' || e.key === 's' || e.key === 'i' || e.key === 'a' || e.key === 'A')) {
+        e.preventDefault();
+    }
 });
 </script>
 
